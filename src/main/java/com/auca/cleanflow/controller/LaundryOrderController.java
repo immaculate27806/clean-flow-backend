@@ -1,5 +1,6 @@
 package com.auca.cleanflow.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.auca.cleanflow.model.LaundryOrder;
+import com.auca.cleanflow.model.OrderStatus;
 import com.auca.cleanflow.service.LaundryOrderService;
 
 @RestController
@@ -28,6 +30,20 @@ public class LaundryOrderController {
     @GetMapping("/all")
     public ResponseEntity<List<LaundryOrder>> getAll() {
         List<LaundryOrder> list = laundryOrderService.getAllLaundryOrders();
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/by-status")
+    public ResponseEntity<List<LaundryOrder>> getByStatus(@RequestParam OrderStatus status) {
+        List<LaundryOrder> list = laundryOrderService.getLaundryOrdersByStatus(status);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/between")
+    public ResponseEntity<List<LaundryOrder>> getBetween(@RequestParam String start, @RequestParam String end) {
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+        List<LaundryOrder> list = laundryOrderService.getLaundryOrdersBetween(startDate, endDate);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 

@@ -1,5 +1,6 @@
 package com.auca.cleanflow.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.auca.cleanflow.model.LaundryOrder;
+import com.auca.cleanflow.model.OrderStatus;
 import com.auca.cleanflow.repository.LaundryOrderRepository;
 
 @Service
@@ -51,5 +53,13 @@ public class LaundryOrderService {
         }
         laundryOrderRepository.deleteById(id);
         return "Laundry order deleted successfully";
+    }
+
+    public List<LaundryOrder> getLaundryOrdersByStatus(OrderStatus status) {
+        return laundryOrderRepository.findByStatusOrderByOrderDateAsc(status);
+    }
+
+    public List<LaundryOrder> getLaundryOrdersBetween(LocalDate start, LocalDate end) {
+        return laundryOrderRepository.findByOrderDateBetweenOrderByOrderDateAsc(start, end);
     }
 }

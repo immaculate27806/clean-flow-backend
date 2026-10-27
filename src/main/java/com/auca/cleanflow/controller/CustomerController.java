@@ -31,6 +31,12 @@ public class CustomerController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @GetMapping("/by-last-name")
+    public ResponseEntity<List<Customer>> getByLastName(@RequestParam String lastName) {
+        List<Customer> list = customerService.getCustomersByLastName(lastName);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable UUID id) {
         Optional<Customer> found = customerService.getCustomerById(id);

@@ -31,6 +31,12 @@ public class StationController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @GetMapping("/free")
+    public ResponseEntity<List<Station>> getFree() {
+        List<Station> list = stationService.getFreeStations();
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable UUID id) {
         Optional<Station> found = stationService.getStationById(id);

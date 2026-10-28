@@ -31,6 +31,12 @@ public class ServiceTypeController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @GetMapping("/unused")
+    public ResponseEntity<List<ServiceType>> getUnused() {
+        List<ServiceType> list = serviceTypeService.getUnusedServiceTypes();
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable UUID id) {
         Optional<ServiceType> found = serviceTypeService.getServiceTypeById(id);

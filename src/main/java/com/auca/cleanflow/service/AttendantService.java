@@ -54,4 +54,8 @@ public class AttendantService {
         attendantRepository.deleteById(id);
         return "Attendant deleted successfully";
     }
+
+    public List<Attendant> getAttendantsByServiceType(String name) {
+        return attendantRepository.findByServiceTypeName(name);
+    }
 }

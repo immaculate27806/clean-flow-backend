@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.auca.cleanflow.model.Customer;
+import com.auca.cleanflow.repository.AttendantRepository;
 import com.auca.cleanflow.repository.CustomerRepository;
 
 @Service
@@ -15,6 +16,9 @@ public class CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private AttendantRepository attendantRepository;
 
     public String saveCustomer(Customer customer) {
         customerRepository.save(customer);
@@ -55,5 +59,13 @@ public class CustomerService {
 
     public List<Customer> getCustomersByLastName(String lastName) {
         return customerRepository.findByLastNameIgnoreCaseOrderByFirstNameAsc(lastName);
+    }
+
+    public boolean attendantExists(UUID attendantId) {
+        return attendantRepository.existsById(attendantId);
+    }
+
+    public List<Customer> getCustomersOfAttendant(UUID attendantId) {
+        return customerRepository.findCustomersOfAttendant(attendantId);
     }
 }

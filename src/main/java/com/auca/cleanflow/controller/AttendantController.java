@@ -31,6 +31,12 @@ public class AttendantController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @GetMapping("/by-service-type")
+    public ResponseEntity<List<Attendant>> getByServiceType(@RequestParam String name) {
+        List<Attendant> list = attendantService.getAttendantsByServiceType(name);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable UUID id) {
         Optional<Attendant> found = attendantService.getAttendantById(id);

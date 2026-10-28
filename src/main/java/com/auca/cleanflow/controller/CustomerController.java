@@ -37,6 +37,15 @@ public class CustomerController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @GetMapping("/of-attendant/{attendantId}")
+    public ResponseEntity<Object> getOfAttendant(@PathVariable UUID attendantId) {
+        if (!customerService.attendantExists(attendantId)) {
+            return new ResponseEntity<>("The attendant with that id does not exist", HttpStatus.NOT_FOUND);
+        }
+        List<Customer> list = customerService.getCustomersOfAttendant(attendantId);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable UUID id) {
         Optional<Customer> found = customerService.getCustomerById(id);

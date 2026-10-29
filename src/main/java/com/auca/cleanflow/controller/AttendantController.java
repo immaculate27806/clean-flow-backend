@@ -57,6 +57,30 @@ public class AttendantController {
         }
     }
 
+    @PutMapping("/{attendantId}/service-types/{serviceTypeId}")
+    public ResponseEntity<String> addServiceType(@PathVariable UUID attendantId, @PathVariable UUID serviceTypeId) {
+        String message = attendantService.addServiceType(attendantId, serviceTypeId);
+        if (message.equals("Service type added to the attendant")) {
+            return new ResponseEntity<>(message, HttpStatus.OK);
+        } else if (message.equals("The attendant already has that service type")) {
+            return new ResponseEntity<>(message, HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PatchMapping("/{attendantId}/station")
+    public ResponseEntity<String> changeStation(@PathVariable UUID attendantId, @RequestParam int stationNumber) {
+        String message = attendantService.changeStation(attendantId, stationNumber);
+        if (message.equals("Station changed successfully")) {
+            return new ResponseEntity<>(message, HttpStatus.OK);
+        } else if (message.equals("That station is taken by another attendant")) {
+            return new ResponseEntity<>(message, HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable UUID id) {
         String message = attendantService.deleteAttendant(id);

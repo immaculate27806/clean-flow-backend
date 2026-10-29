@@ -19,6 +19,18 @@ public class LaundryOrderService {
     private LaundryOrderRepository laundryOrderRepository;
 
     public String saveLaundryOrder(LaundryOrder laundryOrder) {
+        // rule 1: the date cannot be before today
+        if (laundryOrder.getOrderDate().isBefore(LocalDate.now())) {
+            return "Laundry order date cannot be in the past";
+        }
+        // rule 2: the attendant must be free on that date (cancelled orders do not count)
+        boolean busy = laundryOrderRepository.existsByAttendantAndOrderDateAndStatusNot(
+                laundryOrder.getAttendant(), laundryOrder.getOrderDate(), OrderStatus.CANCELLED);
+        if (busy) {
+            return "Attendant already has an order on that date";
+        }
+        // rule 3: a new order always starts as PENDING
+        laundryOrder.setStatus(OrderStatus.PENDING);
         laundryOrderRepository.save(laundryOrder);
         return "Laundry order saved successfully";
     }
@@ -61,5 +73,33 @@ public class LaundryOrderService {
 
     public List<LaundryOrder> getLaundryOrdersBetween(LocalDate start, LocalDate end) {
         return laundryOrderRepository.findByOrderDateBetweenOrderByOrderDateAsc(start, end);
+    }
+
+    public String updateStatus(UUID id, OrderStatus newStatus) {
+        Optional<LaundryOrder> found = laundryOrderRepository.findById(id);
+        if (found.isEmpty()) {
+            return "The laundry order with that id does not exist";
+        }
+        LaundryOrder laundryOrder = found.get();
+        OrderStatus current = laundryOrder.getStatus();
+
+        boolean allowed = false;
+        if (current == OrderStatus.PENDING) {
+            if (newStatus == OrderStatus.WASHING || newStatus == OrderStatus.CANCELLED) {
+                allowed = true;
+            }
+        } else if (current == OrderStatus.WASHING) {
+            if (newStatus == OrderStatus.DELIVERED || newStatus == OrderStatus.CANCELLED) {
+                allowed = true;
+            }
+        }
+        // DELIVERED and CANCELLED are final, so allowed stays false for them
+
+        if (!allowed) {
+            return "Cannot change status from " + current + " to " + newStatus;
+        }
+        laundryOrder.setStatus(newStatus);
+        laundryOrderRepository.save(laundryOrder);
+        return "Laundry order status updated successfully";
     }
 }

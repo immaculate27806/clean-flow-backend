@@ -24,7 +24,13 @@ public class LaundryOrderController {
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody LaundryOrder laundryOrder) {
         String message = laundryOrderService.saveLaundryOrder(laundryOrder);
-        return new ResponseEntity<>(message, HttpStatus.CREATED);
+        if (message.equals("Laundry order saved successfully")) {
+            return new ResponseEntity<>(message, HttpStatus.CREATED);
+        } else if (message.equals("Laundry order date cannot be in the past")) {
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(message, HttpStatus.CONFLICT);
+        }
     }
 
     @GetMapping("/all")
@@ -62,6 +68,18 @@ public class LaundryOrderController {
         String message = laundryOrderService.updateLaundryOrder(id, laundryOrder);
         if (message.equals("Laundry order updated successfully")) {
             return new ResponseEntity<>(message, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<String> updateStatus(@PathVariable UUID id, @RequestParam OrderStatus status) {
+        String message = laundryOrderService.updateStatus(id, status);
+        if (message.equals("Laundry order status updated successfully")) {
+            return new ResponseEntity<>(message, HttpStatus.OK);
+        } else if (message.startsWith("Cannot change status")) {
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
         }

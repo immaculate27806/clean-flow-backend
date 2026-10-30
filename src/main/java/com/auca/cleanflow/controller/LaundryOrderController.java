@@ -6,6 +6,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +41,22 @@ public class LaundryOrderController {
     public ResponseEntity<List<LaundryOrder>> getAll() {
         List<LaundryOrder> list = laundryOrderService.getAllLaundryOrders();
         return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<LaundryOrder>> getPage(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "orderDate,desc") String sort) {
+        // sort looks like "orderDate,desc": the field first, then the direction
+        String[] parts = sort.split(",");
+        Sort.Direction direction = Sort.Direction.ASC;
+        if (parts.length > 1) {
+            direction = Sort.Direction.fromString(parts[1]);
+        }
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, parts[0]));
+        Page<LaundryOrder> result = laundryOrderService.getLaundryOrdersPage(pageable);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/by-status")

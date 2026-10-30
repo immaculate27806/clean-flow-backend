@@ -21,6 +21,10 @@ public interface LaundryOrderRepository extends JpaRepository<LaundryOrder, UUID
 
     boolean existsByAttendantAndOrderDateAndStatusNot(Attendant attendant, LocalDate orderDate, OrderStatus status);
 
+    long countByOrderDate(LocalDate orderDate);
+
+    long countByStatus(OrderStatus status);
+
     @Query("SELECT o.status, COUNT(o) FROM LaundryOrder o GROUP BY o.status")
     List<Object[]> countOrdersByStatus();
 

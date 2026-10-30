@@ -53,6 +53,12 @@ public class LaundryOrderController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @GetMapping("/stats/by-status")
+    public ResponseEntity<List<Object[]>> getStatsByStatus() {
+        List<Object[]> stats = laundryOrderService.getOrderStatsByStatus();
+        return new ResponseEntity<>(stats, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable UUID id) {
         Optional<LaundryOrder> found = laundryOrderService.getLaundryOrderById(id);
@@ -83,6 +89,13 @@ public class LaundryOrderController {
         } else {
             return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PatchMapping("/cancel-day")
+    public ResponseEntity<String> cancelDay(@RequestParam UUID attendantId, @RequestParam String date) {
+        LocalDate day = LocalDate.parse(date);
+        String message = laundryOrderService.cancelDay(attendantId, day);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

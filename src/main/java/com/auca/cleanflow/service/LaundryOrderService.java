@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.auca.cleanflow.model.LaundryOrder;
 import com.auca.cleanflow.model.OrderStatus;
@@ -110,5 +111,16 @@ public class LaundryOrderService {
         laundryOrder.setStatus(newStatus);
         laundryOrderRepository.save(laundryOrder);
         return "Laundry order status updated successfully";
+    }
+
+    public List<Object[]> getOrderStatsByStatus() {
+        return laundryOrderRepository.countOrdersByStatus();
+    }
+
+    @Transactional
+    public String cancelDay(UUID attendantId, LocalDate date) {
+        int count = laundryOrderRepository.cancelOrdersOfDay(attendantId, date,
+                OrderStatus.CANCELLED, OrderStatus.DELIVERED);
+        return count + " laundry orders cancelled";
     }
 }

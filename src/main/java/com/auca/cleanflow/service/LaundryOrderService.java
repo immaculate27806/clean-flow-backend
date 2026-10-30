@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.auca.cleanflow.model.LaundryOrder;
 import com.auca.cleanflow.model.OrderStatus;
+import com.auca.cleanflow.repository.DeliveryNoteRepository;
 import com.auca.cleanflow.repository.LaundryOrderRepository;
 
 @Service
@@ -17,6 +18,9 @@ public class LaundryOrderService {
 
     @Autowired
     private LaundryOrderRepository laundryOrderRepository;
+
+    @Autowired
+    private DeliveryNoteRepository deliveryNoteRepository;
 
     public String saveLaundryOrder(LaundryOrder laundryOrder) {
         // rule 1: the date cannot be before today
@@ -62,6 +66,11 @@ public class LaundryOrderService {
         Optional<LaundryOrder> found = laundryOrderRepository.findById(id);
         if (found.isEmpty()) {
             return "The laundry order with that id does not exist";
+        }
+        LaundryOrder laundryOrder = found.get();
+        // an order that has delivery notes cannot be deleted
+        if (deliveryNoteRepository.existsByLaundryOrder(laundryOrder)) {
+            return "That laundry order has delivery notes, delete them first";
         }
         laundryOrderRepository.deleteById(id);
         return "Laundry order deleted successfully";

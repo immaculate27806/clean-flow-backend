@@ -90,6 +90,8 @@ public class LaundryOrderController {
         String message = laundryOrderService.deleteLaundryOrder(id);
         if (message.equals("Laundry order deleted successfully")) {
             return new ResponseEntity<>(message, HttpStatus.OK);
+        } else if (message.equals("That laundry order has delivery notes, delete them first")) {
+            return new ResponseEntity<>(message, HttpStatus.CONFLICT);
         } else {
             return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
         }

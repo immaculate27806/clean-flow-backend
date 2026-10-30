@@ -1,0 +1,1399 @@
+{
+  "info": {
+    "_postman_id": "a2cae560-3efd-4f83-bd2a-b0f56e480663",
+    "name": "clean-flow-midterm",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58384535"
+  },
+  "item": [
+    {
+      "name": "A2 - Save attendant",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Habimana\",\r\n  \"email\": \"john@mail.com\",\r\n  \"station\": {\"id\": \"PASTE_STATION_ID\"},\r\n  \"serviceTypes\": [{\"id\": \"PASTE_SERVICE_TYPE_ID\"}]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/attendants/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendants",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B1 - Customers by last name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/customers/by-last-name?lastName=mukamana",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "customers",
+            "by-last-name"
+          ],
+          "query": [
+            {
+              "key": "lastName",
+              "value": "mukamana"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B2 - Orders by status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/by-status?status=PENDING",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "by-status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "PENDING"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B2 - Invalid status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/by-status?status=PENDING",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "by-status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "PENDING"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B3 - Orders between dates",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/between?start=2026-10-01&end=2026-10-31",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "between"
+          ],
+          "query": [
+            {
+              "key": "start",
+              "value": "2026-10-01"
+            },
+            {
+              "key": "end",
+              "value": "2026-10-31"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C1 - Attendants by service type",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/attendants/by-service-type?name=dry cleaning",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendants",
+            "by-service-type"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "dry cleaning"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C1 - No match ",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/attendants/by-service-type?name=stain removal",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendants",
+            "by-service-type"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "stain removal"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C2 - Free stations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/stations/free",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "stations",
+            "free"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C3 - Unused service types",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/service-types/unused",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "service-types",
+            "unused"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C4 - Customers of an attendant\t",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/customers/of-attendant/c1cda4c2-fde1-493c-9a50-c77d2620e66e",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "customers",
+            "of-attendant",
+            "c1cda4c2-fde1-493c-9a50-c77d2620e66e"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C4 - Attendant not found",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/customers/of-attendant/11111111-1111-1111-1111-111111111111",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "customers",
+            "of-attendant",
+            "11111111-1111-1111-1111-111111111111"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D1 - Safe saving",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"orderDate\": \"2026-11-20\", \"status\": \"DELIVERED\", \"deliveryOption\": \"Pickup\", \"itemCount\": 3,\r\n \"customer\": {\"id\": \"142c3a7e-7392-40fb-b26b-bce4f3ae38b2\"},\r\n \"attendant\": {\"id\": \"50e87a0b-a3a1-4230-9089-b821a0035a16\"}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D1 - Past date",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"orderDate\": \"2026-10-01\", \"status\": \"PENDING\", \"deliveryOption\": \"Pickup\", \"itemCount\": 2,\r\n \"customer\": {\"id\": \"dac34283-8814-4a2f-8ca5-a2b1c728ad99\"},\r\n \"attendant\": {\"id\": \"c1cda4c2-fde1-493c-9a50-c77d2620e66e\"}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D1 - Attendant busy",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"orderDate\": \"2026-10-30\", \"status\": \"PENDING\", \"deliveryOption\": \"Pickup\", \"itemCount\": 2,\r\n \"customer\": {\"id\": \"dac34283-8814-4a2f-8ca5-a2b1c728ad99\"},\r\n \"attendant\": {\"id\": \"c1cda4c2-fde1-493c-9a50-c77d2620e66e\"}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D2 - Invalid transition",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/e8a5815f-c137-4248-b099-b2b445c11c9a/status?status=PENDING",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "e8a5815f-c137-4248-b099-b2b445c11c9a",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "PENDING"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D2 - Final status",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/e8a5815f-c137-4248-b099-b2b445c11c9a/status?status=CANCELLED",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "e8a5815f-c137-4248-b099-b2b445c11c9a",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "CANCELLED"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D2 - Change status",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/ef28cb72-0957-4985-aa6c-41d1f82a26a7/status?status=WASHING",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "ef28cb72-0957-4985-aa6c-41d1f82a26a7",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "WASHING"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D2 - Order not found",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/11111111-1111-1111-1111-111111111111/status?status=WASHING",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "11111111-1111-1111-1111-111111111111",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "WASHING"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D3 - Add service type",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/attendants/c1cda4c2-fde1-493c-9a50-c77d2620e66e/service-types/e96d356b-79e4-4782-8649-412c313868b8",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendants",
+            "c1cda4c2-fde1-493c-9a50-c77d2620e66e",
+            "service-types",
+            "e96d356b-79e4-4782-8649-412c313868b8"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D3 - Already has it",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/attendants/c1cda4c2-fde1-493c-9a50-c77d2620e66e/service-types/e96d356b-79e4-4782-8649-412c313868b8",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendants",
+            "c1cda4c2-fde1-493c-9a50-c77d2620e66e",
+            "service-types",
+            "e96d356b-79e4-4782-8649-412c313868b8"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D3 - Attendant not found",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/attendants/11111111-1111-1111-1111-111111111111/service-types/e96d356b-79e4-4782-8649-412c313868b8",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendants",
+            "11111111-1111-1111-1111-111111111111",
+            "service-types",
+            "e96d356b-79e4-4782-8649-412c313868b8"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D3 - Service type not found",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/attendants/c1cda4c2-fde1-493c-9a50-c77d2620e66e/service-types/11111111-1111-1111-1111-111111111111",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendants",
+            "c1cda4c2-fde1-493c-9a50-c77d2620e66e",
+            "service-types",
+            "11111111-1111-1111-1111-111111111111"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D4 - Change station",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/attendants/50e87a0b-a3a1-4230-9089-b821a0035a16/station?stationNumber=4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendants",
+            "50e87a0b-a3a1-4230-9089-b821a0035a16",
+            "station"
+          ],
+          "query": [
+            {
+              "key": "stationNumber",
+              "value": "4"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D4 - Station taken",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/attendants/c1cda4c2-fde1-493c-9a50-c77d2620e66e/station?stationNumber=2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendants",
+            "c1cda4c2-fde1-493c-9a50-c77d2620e66e",
+            "station"
+          ],
+          "query": [
+            {
+              "key": "stationNumber",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D4 - Station not found",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/attendants/c1cda4c2-fde1-493c-9a50-c77d2620e66e/station?stationNumber=9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendants",
+            "c1cda4c2-fde1-493c-9a50-c77d2620e66e",
+            "station"
+          ],
+          "query": [
+            {
+              "key": "stationNumber",
+              "value": "9"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D4 - Attendant not found",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/attendants/11111111-1111-1111-1111-111111111111/station?stationNumber=4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendants",
+            "11111111-1111-1111-1111-111111111111",
+            "station"
+          ],
+          "query": [
+            {
+              "key": "stationNumber",
+              "value": "4"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E1 - Write delivery note",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"garmentType\": \"Shirt\", \"remarks\": \"Ironed and folded\", \"quantity\": 3}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/delivery-notes/save?laundryOrderId=26da9be2-a233-46e3-bce3-cb3bb86c7aa2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "delivery-notes",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "laundryOrderId",
+              "value": "26da9be2-a233-46e3-bce3-cb3bb86c7aa2"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E1 - Order not found",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"garmentType\": \"Shirt\", \"remarks\": \"Ironed and folded\", \"quantity\": 3}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/delivery-notes/save?laundryOrderId=11111111-1111-1111-1111-111111111111",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "delivery-notes",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "laundryOrderId",
+              "value": "11111111-1111-1111-1111-111111111111"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E1 - Not delivered",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"garmentType\": \"Shirt\", \"remarks\": \"Ironed and folded\", \"quantity\": 3}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/delivery-notes/save?laundryOrderId=e2d13f20-5ecd-494f-b5d1-50f13b7f9e94",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "delivery-notes",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "laundryOrderId",
+              "value": "e2d13f20-5ecd-494f-b5d1-50f13b7f9e94"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E2 - Notes of a customer",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/delivery-notes/customer/0788123456",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "delivery-notes",
+            "customer",
+            "0788123456"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E3 - Order has notes",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/delete/26da9be2-a233-46e3-bce3-cb3bb86c7aa2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "delete",
+            "26da9be2-a233-46e3-bce3-cb3bb86c7aa2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E3 - Delete note",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/delivery-notes/delete/6c026908-c199-45b9-8b45-ec2cf8d0f40a",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "delivery-notes",
+            "delete",
+            "6c026908-c199-45b9-8b45-ec2cf8d0f40a"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E3 - Note not found",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/delivery-notes/delete/6c026908-c199-45b9-8b45-ec2cf8d0f40a",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "delivery-notes",
+            "delete",
+            "6c026908-c199-45b9-8b45-ec2cf8d0f40a"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "F1 - Orders per status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/stats/by-status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "stats",
+            "by-status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "F2 - Cancel day",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/cancel-day?attendantId=f9c15ce8-1334-4f0d-9fc3-ac6c2706d20e&date=2026-10-20",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "cancel-day"
+          ],
+          "query": [
+            {
+              "key": "attendantId",
+              "value": "f9c15ce8-1334-4f0d-9fc3-ac6c2706d20e"
+            },
+            {
+              "key": "date",
+              "value": "2026-10-20"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "F2 - No orders",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/cancel-day?attendantId=f9c15ce8-1334-4f0d-9fc3-ac6c2706d20e&date=2027-01-01",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "cancel-day"
+          ],
+          "query": [
+            {
+              "key": "attendantId",
+              "value": "f9c15ce8-1334-4f0d-9fc3-ac6c2706d20e"
+            },
+            {
+              "key": "date",
+              "value": "2027-01-01"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BONUS - Dashboard summary",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/dashboard/summary",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "dashboard",
+            "summary"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BONUS - Orders page",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/page?page=0&size=5&sort=orderDate,desc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "page"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "5"
+            },
+            {
+              "key": "sort",
+              "value": "orderDate,desc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 - Save service type",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Test\"}\t",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/service-types/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "service-types",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 - Get all service types",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "text"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/service-types/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "service-types",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 - Get all stations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/stations/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "stations",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 - Get all customers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/customers/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "customers",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 - Get all laundry orders",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 - Get laundry order by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/9f0f5039-8295-43b6-92bd-b5b3a656db82",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "9f0f5039-8295-43b6-92bd-b5b3a656db82"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 - Order not found",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/laundry-orders/11111111-1111-1111-1111-111111111111",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "laundry-orders",
+            "11111111-1111-1111-1111-111111111111"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 - Update station",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"stationNumber\": 4, \"name\": \"Station Four\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/stations/update/e47ec976-f5d9-4e77-974a-46c0a3a0df0b",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "stations",
+            "update",
+            "e47ec976-f5d9-4e77-974a-46c0a3a0df0b"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 - Delete service type",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/service-types/delete/059177d0-32db-4fd1-a4a4-47d5fc223303",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "service-types",
+            "delete",
+            "059177d0-32db-4fd1-a4a4-47d5fc223303"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A1 - Service types",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/service-types/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "service-types",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
